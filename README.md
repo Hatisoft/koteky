@@ -1,5 +1,6 @@
-# electron-quick-start
+# Koteky
 
+<<<<<<< HEAD
 **Clone and run for a quick way to see an Electron in action.**
 
 This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start) within the Electron documentation.
@@ -28,3 +29,6 @@ $ npm install && npm start
 Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
 
 #### License [MIT](LICENSE.md)
+=======
+crossplatform social network manager
+>>>>>>> c9b451930e4283628714a6a3a0d425363a5d98ac
