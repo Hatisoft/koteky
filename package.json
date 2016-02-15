@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "electron-plugins": "0.0.4"
+    "electron-plugins": "0.0.4",
+    "electron-window": "^0.6.2"
   }
 }
