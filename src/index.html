@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="index.js"></script>
-
   </head>
   <body data-feedly-mini="yes">
    <div class="container-fluid">
@@ -21,6 +19,13 @@
            <p class="lead">We are using node <script>document.write(process.versions.node)</script>,
            Chrome <script>document.write(process.versions.chrome)</script>,
            and Electron <script>document.write(process.versions.electron)</script>.</p>
+           <h2>plugins</h2>
+            <ul id="plugins"></ul>
+            <h2>output</h2>
+            <ul id="output"></ul>
+            <button type="button" onclick="list()">List</button>
+            <button type="button" onclick="check()">Check</button>
+            <script src="index.js"></script>
          </div>
      </div>
    </div>
