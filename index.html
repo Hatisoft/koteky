@@ -2,8 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Koteky</title>
+
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script>window.$ = window.bootstrap = require('bootstrap');</script>
   </head>
   <body data-feedly-mini="yes">
    <div class="container-fluid">
@@ -25,8 +29,26 @@
             <ul id="output"></ul>
             <button type="button" onclick="list()">List</button>
             <button type="button" onclick="check()">Check</button>
+            <button type="button" data-toggle="modal" data-target="#myModal">Modal</button>
             <script src="index.js"></script>
          </div>
+     </div>
+   </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+         </div>
+         <div class="modal-body">
+           ...
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+       </div>
      </div>
    </div>
    </body>
