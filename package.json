@@ -31,10 +31,11 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "electron-updater": "^0.2.x",
     "electron-plugins": "^0.0.x",
+    "electron-updater": "^0.2.x",
     "vue": "^1.0.16"
   },
   "plugins": {
+      "electron-updater-sample-plugin": "^0.0.2"
   }
 }
