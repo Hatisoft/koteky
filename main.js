@@ -1,34 +1,24 @@
-var app = require('app');
-var ipc = require('ipc');
-var util = require('util');
 var BrowserWindow = require('browser-window');
 var updater = require('electron-updater');
+var menubar = require('menubar')
 
-require('crash-reporter').start();
+var options = {dir: __dirname, index: 'file://' + __dirname + '/index.html', 'preload-window': true};
+var menu = menubar(options);
 
-var mainWindow = null;
-var loaded = false;
+menu.on('ready', function() {
+    /*updater.on('ready', function() {
 
-app.on('window-all-closed', function() {
-    if (process.platform != 'darwin')
-        app.quit();
-});
-
-app.on('ready', function() {
-    updater.on('ready', function () {
-        mainWindow = new BrowserWindow({width: 800, height: 600});
-        mainWindow.loadUrl('file://' + __dirname + '/index.html');
-        mainWindow.openDevTools({detach:true});
-        mainWindow.on('closed', function() {
-            mainWindow = null;
-        });
-    });
+    });*/
     updater.on('updateRequired', function () {
-        app.quit();
+        menu.app.quit();
     });
     updater.on('updateAvailable', function () {
-        if(mainWindow)
-            mainWindow.webContents.send('update-available');
+        if(menu.window)
+            menu.window.webContents.send('update-available');
     });
     updater.start();
+});
+
+menu.on('after-create-window', function() {
+    menu.window.openDevTools({detach:true});
 });
