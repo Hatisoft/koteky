@@ -1,8 +1,8 @@
 var BrowserWindow = require('browser-window');
 var updater = require('electron-updater');
-var menubar = require('menubar')
+var menubar = require('menubar');
 
-var options = {dir: __dirname, index: 'file://' + __dirname + '/index.html', 'preload-window': true};
+var options = {dir: __dirname, index: 'file://' + __dirname + '/index-view.html', 'preload-window': true};
 var menu = menubar(options);
 
 menu.on('ready', function() {
