@@ -10,48 +10,17 @@
     <script>window.$ = window.bootstrap = require('bootstrap');</script>
   </head>
   <body data-feedly-mini="yes">
-      Hello World
-      <!--
-   <div class="container-fluid">
-       <div class="row">
-           <div class="col-sm-2">
-               <ul class="nav nav-sidebar">
-                  <li> <a href="#">Main</a></li>
-               </ul>
-           </div>
-
-         <div class="col-sm-8">
-           <h1 class="page-header">Hello World!</h1>
-           <p class="lead">We are using node <script>document.write(process.versions.node)</script>,
-           Chrome <script>document.write(process.versions.chrome)</script>,
-           and Electron <script>document.write(process.versions.electron)</script>.</p>
-           <h2>plugins</h2>
-            <ul id="plugins"></ul>
-            <h2>output</h2>
-            <ul id="output"></ul>
-            <button type="button" onclick="list()">List</button>
-            <button type="button" onclick="check()">Check</button>
-            <button type="button" data-toggle="modal" data-target="#myModal">Modal</button>
-            <script src="index.js"></script>
-         </div>
-     </div>
-   </div>
-
-
-   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-     <div class="modal-dialog" role="document">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-         </div>
-         <div class="modal-body">
-           ...
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
-       </div>
-     </div>
-   </div>-->
+      <div id="app">
+<ul>
+  <li v-for="inf in example">
+    {{ inf.name }}
+  </li>
+</ul>
+</div>
+      <script type="text/javascript">
+          var viewModel = require('./index-view-model');
+          var model = require('./index-model');
+          var vm = new viewModel(window, new model());
+      </script>
    </body>
 </html>
