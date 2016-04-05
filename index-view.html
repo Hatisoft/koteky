@@ -3,24 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <title>Koteky</title>
-
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-
-    <script>window.$ = window.jQuery = require('jquery');</script>
-    <script>window.$ = window.bootstrap = require('bootstrap');</script>
   </head>
-  <body data-feedly-mini="yes">
-      <div id="app">
-<ul>
-  <li v-for="inf in example">
-    {{ inf.name }}
-  </li>
-</ul>
-</div>
-      <script type="text/javascript">
-          var viewModel = require('./index-view-model');
-          var model = require('./index-model');
-          var vm = new viewModel(window, new model());
-      </script>
-   </body>
+  <body>
+        <div id="app">
+            <ul>
+                <li v-for="inf in example">
+                    {{ inf.name }}
+                </li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            var viewModel = require('./index-view-model');
+            var model = require('./index-model');
+            var vm = new viewModel(window, new model());
+        </script>
+    </body>
 </html>
