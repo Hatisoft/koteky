@@ -30,6 +30,7 @@
     "sinon": "^1.14.1"
   },
   "dependencies": {
+    "koteky-lib": "^0.1.0",
     "bootstrap": "^3.3.6",
     "electron-plugins": "^0.0.x",
     "electron-updater": "^0.2.x",

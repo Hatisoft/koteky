@@ -7,15 +7,15 @@
   </head>
   <body>
         <div id="app">
-            <ul>
-                <li v-for="inf in example">
-                    {{ inf.name }}
-                </li>
-            </ul>
+            <template v-for="post in postsFake">
+                <div class="post">
+                    {{ post.date }}, {{ post.origin }}, {{ post.owner }}, {{ post.content }}
+                </div>
+            </template>
         </div>
         <script type="text/javascript">
-            var viewModel = require('./index-view-model');
-            var model = require('./index-model');
+            var viewModel = require('./lib/app-view-model');
+            var model = require('./lib/app-model');
             var vm = new viewModel(window, new model());
         </script>
     </body>
