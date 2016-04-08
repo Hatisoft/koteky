@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <title>Koteky</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script>
+    window.$ = window.jQuery = require('jquery');
+    window.$ = window.bootstrap = require('bootstrap');
+    require('electron-stylus')(__dirname + '/style/index.styl');
+    </script>
   </head>
   <body>
         <div id="app">
             <template v-for="post in postsFake">
-                <div class="post">
-                    {{ post.date }}, {{ post.origin }}, {{ post.owner }}, {{ post.content }}
-                </div>
+                <post :data="post" />
             </template>
         </div>
         <script type="text/javascript">

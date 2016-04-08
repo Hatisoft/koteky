@@ -6,18 +6,14 @@
   "scripts": {
     "start": "electron main.js",
     "test": "mocha test",
-
     "clean": "rm -rf ./release",
     "gulp": "npm run clean && gulp",
-
     "pack": "npm run gulp && npm run pack:win && npm run pack:darwin",
     "pack:win": "electron-packager ./release/app electron-updater-sample --platform=win32 --arch=x64 --version=0.27.2 --out=./release/win32 --icon=assets/win/evolve.ico",
     "pack:darwin": "electron-packager ./release/app electron-updater-sample --platform=darwin --arch=x64 --version=0.27.2 --out=./release/darwin --icon=assets/win/evolve.ico",
-
     "build": "npm run pack && npm run build:win && npm run build:darwin",
     "build:win": "electron-builder ./release/win32/electron-updater-sample-win32 --platform=win32 --config=config.json --out=./release/win32",
     "build:darwin": "electron-builder ./release/darwin/electron-updater-sample.app --platform=darwin --config=config.json --out=./release/darwin",
-
     "release": "npm run build && npm run release:win && npm run release:darwin",
     "release:win": "mv './release/win32/electron-updater-sample Setup.exe' './release/win32/Setup-x64.exe'",
     "release:darwin": "mv ./release/darwin/electron-updater-sample.dmg ./release/darwin/electron-updater-sample-x64.dmg"
@@ -47,13 +43,14 @@
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
-    "koteky-lib": "^0.1.0",
     "bootstrap": "^3.3.6",
     "electron-plugins": "^0.0.x",
+    "electron-stylus": "^0.1.1",
     "electron-updater": "^0.2.x",
+    "jquery": "^2.2.1",
+    "koteky-lib": "^0.1.0",
     "menubar": "^4.0.2",
-    "vue": "^1.0.16",
-    "vue-strap": "^1.0.7"
+    "vue": "^1.0.16"
   },
   "plugins": {}
 }
