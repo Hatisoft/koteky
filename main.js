@@ -1,6 +1,9 @@
-var BrowserWindow = require('browser-window');
+var electron = require('electron');
+var BrowserWindow = electron.BrowserWindow;
+var ipcMain = electron.ipcMain;
 var updater = require('electron-updater');
 var menubar = require('menubar');
+//var remotecalls = require('./lib/remote-calls');
 
 var options = {dir: __dirname, index: 'file://' + __dirname + '/index.html', 'preload-window': true};
 var menu = menubar(options);
