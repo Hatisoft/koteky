@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "electron-cookies": "^1.1.0",
     "electron-plugins": "^0.0.x",
     "electron-stylus": "^0.1.1",
     "electron-updater": "^0.2.x",
