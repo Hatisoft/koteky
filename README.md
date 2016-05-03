@@ -18,14 +18,14 @@ plugins need to be installed by hand adding them on the plugin section of packag
 ```
 {
   ...
-  "plugins": 
+  "plugins":
   {
    "name_of_plugin" : "version_or_repo"
   }
 }
 ```
 
-execution can be achived by: 
+execution can be achived by:
 
 ```
 # Go into the repository
@@ -40,7 +40,7 @@ $ npm install && npm start
 - [x] Use plugin based architecture
 - [x] Style and Display fake posts
 - [x] Authentication based on Oauth for social networks
-- [ ] Implement Twitter plugin
+- [x] Implement Twitter plugin
 - [ ] Implement Facebook plugin
 - [ ] Implement LinkedIn plugin
 - [ ] Others
