@@ -8,9 +8,9 @@ var options = {dir: __dirname, index: 'file://' + __dirname + '/index.html', 'pr
 var menu = menubar(options);
 
 menu.on('ready', function() {
-    /*updater.on('ready', function() {
+    updater.on('ready', function() {
 
-    });*/
+    });
     updater.on('updateRequired', function () {
         menu.app.quit();
     });
