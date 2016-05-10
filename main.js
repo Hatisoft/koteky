@@ -1,7 +1,6 @@
 "use strict";
 var electron = require('electron');
 var BrowserWindow = electron.BrowserWindow;
-var ipcMain = electron.ipcMain;
 var contextMenuBar = electron.Menu;
 var updater = require('electron-updater');
 var menubar = require('menubar');
@@ -33,9 +32,8 @@ var menu = menubar(options);
 menu.on('ready', function() {
     updater.on('ready', function() {
 
-        const contextMenu = contextMenuBar.buildFromTemplate(menuTemplate);
-          //menu.tray.setToolTip('This is my application.');
-          menu.tray.setContextMenu(contextMenu);
+        var contextMenu = contextMenuBar.buildFromTemplate(menuTemplate);
+        menu.tray.setContextMenu(contextMenu);
     });
     updater.on('updateRequired', function () {
         menu.app.quit();
@@ -67,6 +65,9 @@ menu.on('after-create-window', function() {
               height: bounds.height
             });
     });
+    menu.window.webContents.on('did-finish-load', function() {
+        menu.window.webContents.send('initialize', settings);
+      });
     menu.window.openDevTools({detach:true});
 
 });

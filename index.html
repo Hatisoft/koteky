@@ -19,7 +19,11 @@
         <script type="text/javascript">
             var viewModel = require('./lib/app-view-model');
             var model = require('./lib/app-model');
-            var vm = new viewModel(window, new model());
+            var ipc = require('ipc');
+
+            ipc.on('initialize', function(settings) {
+              var vm = new viewModel(window, new model([], settings));
+            });
         </script>
     </body>
 </html>
