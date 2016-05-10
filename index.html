@@ -25,7 +25,6 @@
             var localwindow = new BrowserWindow({show: false, webPreferences: {nodeIntegration: false}});
 
             ipc.on('initialize', function(settings) {
-                console.log(localwindow);
                 var modelObj = new model([], settings, window, localwindow);
                 var viewModelObj = new viewModel(window, modelObj);
             });
