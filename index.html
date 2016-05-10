@@ -20,9 +20,14 @@
             var viewModel = require('./lib/app-view-model');
             var model = require('./lib/app-model');
             var ipc = require('ipc');
+            var electron = require('electron');
+            var BrowserWindow = electron.remote.BrowserWindow;
+            var localwindow = new BrowserWindow({show: false, webPreferences: {nodeIntegration: false}});
 
             ipc.on('initialize', function(settings) {
-              var vm = new viewModel(window, new model([], settings));
+                console.log(localwindow);
+                var modelObj = new model([], settings, window, localwindow);
+                var viewModelObj = new viewModel(window, modelObj);
             });
         </script>
     </body>
