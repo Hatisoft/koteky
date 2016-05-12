@@ -1,12 +1,14 @@
 "use strict";
-var electron = require('electron');
-var BrowserWindow = electron.BrowserWindow;
-var contextMenuBar = electron.Menu;
-var updater = require('electron-updater');
-var menubar = require('menubar');
-var ElectronSettings = require('electron-settings');
+const electron = require('electron');
+const BrowserWindow = electron.BrowserWindow;
+const contextMenuBar = electron.Menu;
+const updater = require('electron-updater');
+const menubar = require('menubar');
+const ElectronSettings = require('electron-settings');
+const path = require('path');
 
-var options = {dir: __dirname, index: 'file://' + __dirname + '/index.html', 'preload-window': true};
+
+var options = {dir: __dirname, index: 'file://' + __dirname + '/app.html', 'preload-window': true};
 var settings = new ElectronSettings();
 var windowsSettings = settings.get('window');
 if(windowsSettings)
@@ -16,7 +18,9 @@ var menuTemplate=[
       {
         label: 'Options',
         click: () => {
-            //var localwindow = new BrowserWindow({show: false, webPreferences: {nodeIntegration: false}});
+            const modalPath = path.join('file://', __dirname, '/lib/settings/settings.html');
+            let win = new BrowserWindow({ width: 400, height: 320, showDevTools: true });
+            win.loadURL(modalPath)
             //to be implemented
         }
       },
