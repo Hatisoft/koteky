@@ -32,7 +32,7 @@
             var update = (pluginSection) =>
             {
                 packageJson.plugins = pluginSection;
-                fs.writeFileSync(pathto, packageJson);
+                fs.writeFileSync(pathto, JSON.stringify(packageJson));
             }
 
             var pluginsM = new pluginsModel(all, installed, update);
