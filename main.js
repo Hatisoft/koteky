@@ -30,10 +30,14 @@ var menuTemplate=[
         }
     },
     {
-      label: 'Save',
-      click: () => {
-          menu.window.webContents.send('finalize');
-      }}];
+        label: 'Show/Hide',
+        click: () => {
+            if(menu.window.isVisible())
+                menu.window.hide();
+            else
+                menu.window.show();
+    }
+}];
 
 var menu = menubar(options);
 
@@ -55,6 +59,7 @@ menu.on('ready', function() {
 
 var savingLoop = true;
 menu.app.on('before-quit', (e) => {
+    //TODO: remove this Hack to make sure the app closes
     menu.window.webContents.send('finalize');
     if(savingLoop)
         e.preventDefault();
