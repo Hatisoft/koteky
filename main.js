@@ -20,16 +20,20 @@ var menuTemplate=[
         click: () => {
             const modalPath = path.join('file://', __dirname, '/lib/settings/settings.html');
             let win = new BrowserWindow({ width: 400, height: 320, showDevTools: true });
-            win.loadURL(modalPath)
-            //to be implemented
+            win.loadURL(modalPath);
         }
       },
       {
         label: 'Close',
         click: () => {
-              menu.app.quit();
+            menu.app.quit();
         }
-    }];
+    },
+    {
+      label: 'Save',
+      click: () => {
+          menu.window.webContents.send('finalize');
+      }}];
 
 var menu = menubar(options);
 
@@ -49,6 +53,20 @@ menu.on('ready', function() {
     updater.start();
 });
 
+var savingLoop = true;
+menu.app.on('before-quit', (e) => {
+    menu.window.webContents.send('finalize');
+    if(savingLoop)
+        e.preventDefault();
+    setTimeout(function() {
+        menu.app.quit();
+    }, 4000);
+});
+
+electron.ipcMain.on('now-close', () => {
+    savingLoop = false;
+});
+
 menu.on('after-create-window', function() {
     menu.window.on('resize', function() {
         settings.set('window.height',  menu.window.getSize()[0]);
@@ -58,19 +76,9 @@ menu.on('after-create-window', function() {
         settings.set('window.x',  menu.window.getPosition()[0]);
         settings.set('window.y',  menu.window.getPosition()[1]);
     });
-    menu.window.on('close', function () {
-        if (!menu.window)
-            return;
-        var bounds = menu.window.getBounds();
-        settings.set("window", {
-              x: bounds.x,
-              y: bounds.y,
-              width: bounds.width,
-              height: bounds.height
-            });
-    });
+
     menu.window.webContents.on('did-finish-load', function() {
-        menu.window.webContents.send('initialize', settings);
+        menu.window.webContents.send('initialize');
       });
     menu.window.openDevTools({detach:true});
 
