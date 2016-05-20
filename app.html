@@ -8,7 +8,6 @@
     window.$ = window.jQuery = require('jquery');
     window.$ = window.bootstrap = require('bootstrap');
     require('electron-stylus')(__dirname + '/style/index.styl');
-    require('./lib/bootstraper')(window);
     </script>
   </head>
   <body>
@@ -30,5 +29,8 @@
                     </div>
                 </div>
         </div>
+        <script type="text/javascript">
+            require('./lib/bootstraper')(window);
+        </script>
     </body>
 </html>
