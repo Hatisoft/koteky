@@ -8,6 +8,7 @@
     window.$ = window.jQuery = require('jquery');
     window.$ = window.bootstrap = require('bootstrap');
     require('electron-stylus')(__dirname + '/style/index.styl');
+    require('./lib/bootstraper')(window);
     </script>
   </head>
   <body>
@@ -29,16 +30,5 @@
                     </div>
                 </div>
         </div>
-        <script type="text/javascript">
-            const bootstraper = require('./lib/bootstraper')();
-            const ipcRenderer = require('electron').ipcRenderer;
-
-            ipcRenderer.on('initialize', () => {
-                bootstraper.initialize(window);
-            });
-            ipcRenderer.on('finalize', () => {
-                bootstraper.finalize();
-            });
-        </script>
     </body>
 </html>
