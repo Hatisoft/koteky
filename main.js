@@ -16,11 +16,9 @@ if(windowsSettings)
 
 var menuTemplate=[
       {
-        label: 'Options',
+        label: 'Settings',
         click: () => {
-            const modalPath = path.join('file://', __dirname, '/lib/settings/settings.html');
-            let win = new BrowserWindow({ width: 400, height: 320, showDevTools: true });
-            win.loadURL(modalPath);
+            menu.window.webContents.send('open-settings');
         }
       },
       {
@@ -77,11 +75,6 @@ menu.on('after-create-window', function() {
         settings.set('window.height',  menu.window.getSize()[0]);
         settings.set('window.width',  menu.window.getSize()[1]);
     });
-    menu.window.on('move', function() {
-        settings.set('window.x',  menu.window.getPosition()[0]);
-        settings.set('window.y',  menu.window.getPosition()[1]);
-    });
-
     menu.window.webContents.on('did-finish-load', function() {
         menu.window.webContents.send('initialize');
       });
