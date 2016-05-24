@@ -8,13 +8,13 @@ This is a plugin based crossplatform social network manager application based on
 
 **This project is still on development and is not ready for public use**
 
-Current early use can be done by cloning repo
+1. Current early use can be done by cloning repo
 ```
 # Clone the repository
 $ git clone https://github.com/Hatisoft/koteky.git
 ```
 
-plugins need to be installed by hand adding them on the plugin section of package.json
+2. plugins can be installed in app or modifying the package.json
 ```
 {
   ...
@@ -25,8 +25,7 @@ plugins need to be installed by hand adding them on the plugin section of packag
 }
 ```
 
-execution can be achived by:
-
+3. Execute:
 ```
 # Go into the repository
 $ cd koteky
@@ -43,7 +42,6 @@ $ npm install && npm start
 - [x] Implement Twitter plugin
 - [ ] Implement Facebook plugin
 - [ ] Implement LinkedIn plugin
-- [ ] Others
 
 ####Credits
 
