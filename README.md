@@ -13,8 +13,7 @@ This is a plugin based crossplatform social network manager application based on
 # Clone the repository
 $ git clone https://github.com/Hatisoft/koteky.git
 ```
-
-2. plugins can be installed in app or modifying the package.json
+2. Plugins can be installed in app or modifying the package.json
 ```
 {
   ...
@@ -24,8 +23,7 @@ $ git clone https://github.com/Hatisoft/koteky.git
   }
 }
 ```
-
-3. Execute:
+3. Run:
 ```
 # Go into the repository
 $ cd koteky
@@ -37,7 +35,7 @@ $ npm install && npm start
 ##Roadmap
 
 - [x] Use plugin based architecture
-- [x] Style and Display fake posts
+- [x] Style and Display posts
 - [x] Authentication based on Oauth for social networks
 - [x] Implement Twitter plugin
 - [ ] Implement Facebook plugin
