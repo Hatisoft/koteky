@@ -70,6 +70,10 @@ electron.ipcMain.on('now-close', () => {
     savingLoop = false;
 });
 
+electron.ipcMain.on('changed-plugins-settings', () => {
+    //updater.check();
+});
+
 menu.on('after-create-window', function() {
     menu.window.on('resize', function() {
         settings.set('window.height',  menu.window.getSize()[0]);
