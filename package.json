@@ -1,6 +1,6 @@
 {
   "name": "koteky",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "crossplatform social network manager",
   "main": "main.js",
   "scripts": {
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/Hatisoft/koteky#readme",
   "devDependencies": {
     "electron-packager": "^7.0.2",
-    "electron-prebuilt": "^1.1.3",
+    "electron-prebuilt": "^0.36.x",
     "gulp": "^3.8.11",
     "proxyquire": "^1.4.0",
     "blanket": "^1.2.1",
@@ -58,6 +58,6 @@
     "vue": "^1.0.16"
   },
   "plugins": {
-    "koteky-twitter": "0.4.6"
+    "koteky-twitter": "0.4.7"
   }
 }
