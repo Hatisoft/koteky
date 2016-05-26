@@ -71,7 +71,11 @@ electron.ipcMain.on('now-close', () => {
 });
 
 electron.ipcMain.on('changed-plugins-settings', () => {
-    //updater.check();
+    updater.update((err) => {
+        if (err)
+            return;
+        menu.window.webContents.send('refresh-posts');
+    });
 });
 
 menu.on('after-create-window', function() {
