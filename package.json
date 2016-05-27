@@ -4,7 +4,7 @@
   "description": "crossplatform social network manager",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js",
+    "start": "electron .",
     "test": "mocha test",
     "clean": "rm -rf ./release",
     "gulp": "npm run clean && gulp",
@@ -43,6 +43,7 @@
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
+    "appdirectory": "^0.1.0",
     "bootstrap": "^3.3.6",
     "check-types": "^7.0.0",
     "compare-version": "^0.1.2",

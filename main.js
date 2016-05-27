@@ -6,10 +6,12 @@ const updater = require('electron-updater');
 const menubar = require('menubar');
 const ElectronSettings = require('electron-settings');
 const path = require('path');
+const vars = require('./lib/vars');
 
+console.log(vars.AppPath());
 
 var options = {dir: __dirname, index: 'file://' + __dirname + '/app.html', 'preload-window': true};
-var settings = new ElectronSettings();
+var settings = new ElectronSettings({configDirPath: vars.AppPath()});
 var windowsSettings = settings.get('window');
 if(windowsSettings)
     Object.keys(windowsSettings).forEach(function(key) { options[key] = windowsSettings[key]; });
@@ -52,7 +54,14 @@ menu.on('ready', function() {
         if(menu.window)
             menu.window.webContents.send('update-available');
     });
-    updater.start();
+    var customLogger = {
+      log: console.log,
+      error: console.error,
+      info: console.info,
+      warn: console.warn,
+      debug: console.debug
+    };
+    updater.start(customLogger);
 });
 
 var savingLoop = true;
