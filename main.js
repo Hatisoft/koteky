@@ -8,8 +8,6 @@ const ElectronSettings = require('electron-settings');
 const path = require('path');
 const vars = require('./lib/vars');
 
-console.log(vars.AppPath());
-
 var options = {dir: __dirname, index: 'file://' + __dirname + '/app.html', 'preload-window': true};
 var settings = new ElectronSettings({configDirPath: vars.AppPath()});
 var windowsSettings = settings.get('window');
@@ -39,29 +37,32 @@ var menuTemplate=[
     }
 }];
 
+function callUpdate(){
+    updater.update((err) => {
+        if (err)
+            return;
+        menu.window.webContents.send('refresh-posts');
+    });
+}
+
 var menu = menubar(options);
 
 menu.on('ready', function() {
-    updater.on('ready', function() {
+    var contextMenu = contextMenuBar.buildFromTemplate(menuTemplate);
+    menu.tray.setContextMenu(contextMenu);
+    callUpdate();
+});
 
-        var contextMenu = contextMenuBar.buildFromTemplate(menuTemplate);
-        menu.tray.setContextMenu(contextMenu);
+menu.on('after-create-window', function() {
+    menu.window.on('resize', function() {
+        settings.set('window.height',  menu.window.getSize()[0]);
+        settings.set('window.width',  menu.window.getSize()[1]);
     });
-    updater.on('updateRequired', function () {
-        menu.app.quit();
-    });
-    updater.on('updateAvailable', function () {
-        if(menu.window)
-            menu.window.webContents.send('update-available');
-    });
-    var customLogger = {
-      log: console.log,
-      error: console.error,
-      info: console.info,
-      warn: console.warn,
-      debug: console.debug
-    };
-    updater.start(customLogger);
+    menu.window.webContents.on('did-finish-load', function() {
+        menu.window.webContents.send('initialize');
+      });
+    menu.window.openDevTools({detach:true});
+
 });
 
 var savingLoop = true;
@@ -80,21 +81,5 @@ electron.ipcMain.on('now-close', () => {
 });
 
 electron.ipcMain.on('changed-plugins-settings', () => {
-    updater.update((err) => {
-        if (err)
-            return;
-        menu.window.webContents.send('refresh-posts');
-    });
-});
-
-menu.on('after-create-window', function() {
-    menu.window.on('resize', function() {
-        settings.set('window.height',  menu.window.getSize()[0]);
-        settings.set('window.width',  menu.window.getSize()[1]);
-    });
-    menu.window.webContents.on('did-finish-load', function() {
-        menu.window.webContents.send('initialize');
-      });
-    menu.window.openDevTools({detach:true});
-
+    callUpdate();
 });
