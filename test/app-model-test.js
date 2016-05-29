@@ -1,25 +1,98 @@
-/*jshint -W030 */
 var chai = require('chai');
 var expect = require('chai').expect;
 var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 
-var appModel = require('../lib/app-model');
+var provider = require('koteky-lib').provider;
+var appModel = require('../lib/main/app-model');
+var pluginManager = require('../lib/plugin-manager');
 
-/*var before = function(){
-    date = new Date(2011, 0, 1, 2, 3, 4, 567);
-    origin = "Twitter";
-    owner = "Jhon";
-    content = "Loren Ipsum Troloro";
-};*/
+var before = function(){
+    posts = [];
+    settings = sinon.stub();
+    pluginsManager = sinon.createStubInstance(pluginManager);
+    whenPluginNoAccess = sinon.stub();
+};
 
-var testEmptyPosts = function(){
-    var model = new appModel();
+var testPostInit = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    expect(model.posts).to.equal(posts);
+};
+
+var testSettingsInit = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    expect(model.settings).to.equal(settings);
+};
+
+var testPluginsManagerInit = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    expect(model.pluginsManager).to.equal(pluginsManager);
+};
+
+var testWhenPluginNoAccessManagerInit = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    expect(model._whenPluginNoAccess).to.equal(whenPluginNoAccess);
+};
+
+var hasAccessCalled = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    var PLuginSpy = sinon.spy(function() { return sinon.createStubInstance(provider); });
+    var plugin = new PLuginSpy();
+    plugin.hasAccess.returns(new Promise(()=>{},()=>{}));
+    pluginsManager.plugins = [plugin];
+    model.initialize();
+    expect(plugin.hasAccess).to.have.been.calledOnce;
+};
+
+var postCalled = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    var PLuginSpy = sinon.spy(function() { return sinon.createStubInstance(provider); });
+    var plugin = new PLuginSpy();
+    pluginsManager.plugins = [plugin];
+    model.post('text');
+    expect(plugin.post).to.have.been.calledOnce;
+};
+
+var resetCalled = function(){
+    var localpost = ['','',''];
+    var model = new appModel(localpost, settings, pluginsManager, whenPluginNoAccess);
+    var PLuginSpy = sinon.spy(function() { return sinon.createStubInstance(provider); });
+    var plugin = new PLuginSpy();
+    plugin.hasAccess.returns(new Promise(()=>{},()=>{}));
+    pluginsManager.plugins = [plugin];
+    model.reset();
     expect(model.posts).to.be.empty;
 };
 
-describe('Post Initialization', function(){
-    //before(before);
-    it ('has empty posts', testEmptyPosts);
+var initializePluginContentCalled = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    var PLuginSpy = sinon.spy(function() { return sinon.createStubInstance(provider); });
+    var plugin = new PLuginSpy();
+    model.InitializePluginContent(plugin);
+    expect(plugin.subscribe).to.have.been.calledOnce;
+    expect(plugin.retrieve).to.have.been.calledOnce;
+};
+
+/*var hasAccessNotCalled = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    var PLuginSpy = sinon.spy(function() { return sinon.stub(); });
+    var plugin = new PLuginSpy();
+    plugin.hasAccess = sinon.spy(() => {return new Promise(()=>{},()=>{}); });
+    pluginsManager.plugins = [plugin];
+    model.initialize();
+    expect(plugin.hasAccess).to.have.callCount(0);
+};*/
+
+describe('App Model Initialization', function(){
+    before(before);
+    it ('has posts initialize', testPostInit);
+    it ('has settings initialize', settings);
+    it ('has pluginsManager initialize', testPluginsManagerInit);
+    it ('has _whenPluginNoAccess initialize', testWhenPluginNoAccessManagerInit);
+    it ('hasAccess called if provider', hasAccessCalled);
+    it ('post to plugins', postCalled);
+    it ('model reset', resetCalled);
+    it ('initialize a plugins', initializePluginContentCalled);
+    //it ('hasAccess not called if not provider', hasAccessNotCalled);
 });
