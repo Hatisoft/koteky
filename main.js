@@ -7,6 +7,7 @@ const menubar = require('menubar');
 const ElectronSettings = require('electron-settings');
 const path = require('path');
 const vars = require('./lib/vars');
+const open = require("open");
 
 var options = {dir: __dirname, index: 'file://' + __dirname + '/app.html', 'preload-window': true};
 var settings = new ElectronSettings({configDirPath: vars.AppPath()});
@@ -48,6 +49,10 @@ function callUpdate(){
 var menu = menubar(options);
 
 menu.on('ready', function() {
+    menu.window.webContents.on('new-window', function(event, url){
+        event.preventDefault();
+        open(url);
+    });
     var contextMenu = contextMenuBar.buildFromTemplate(menuTemplate);
     menu.tray.setContextMenu(contextMenu);
     callUpdate();
