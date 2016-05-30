@@ -38,9 +38,9 @@ var menuTemplate=[
     }
 }];
 
-function callUpdate(){
+function callUpdate(shouldRefresh){
     updater.update((err) => {
-        if (err)
+        if (err || !shouldRefresh)
             return;
         menu.window.webContents.send('refresh-posts');
     });
@@ -55,7 +55,7 @@ menu.on('ready', function() {
     });
     var contextMenu = contextMenuBar.buildFromTemplate(menuTemplate);
     menu.tray.setContextMenu(contextMenu);
-    callUpdate();
+    callUpdate(false);
 });
 
 menu.on('after-create-window', function() {
@@ -86,5 +86,5 @@ electron.ipcMain.on('now-close', () => {
 });
 
 electron.ipcMain.on('changed-plugins-settings', () => {
-    callUpdate();
+    callUpdate(true);
 });

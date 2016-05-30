@@ -51,6 +51,7 @@
     "electron-settings": "^1.0.4",
     "electron-stylus": "^0.1.1",
     "electron-updater": "^0.3.x",
+    "font-awesome": "^4.6.3",
     "jquery": "^2.2.1",
     "koteky-lib": "^0.2.1",
     "menubar": "^4.0.2",
