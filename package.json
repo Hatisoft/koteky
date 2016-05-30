@@ -1,6 +1,6 @@
 {
   "name": "koteky",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "crossplatform social network manager",
   "main": "main.js",
   "scripts": {
@@ -62,6 +62,6 @@
     "vue-moment": "^1.0.7"
   },
   "plugins": {
-    "koteky-twitter": "0.4.8"
+    "koteky-twitter": "0.4.9"
   }
 }
