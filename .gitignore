@@ -1,1 +1,7 @@
+#directories
 node_modules
+dist
+
+#files
+*.tgz
+*.log

@@ -6,17 +6,8 @@
   "scripts": {
     "start": "electron .",
     "test": "mocha test",
-    "clean": "rm -rf ./release",
-    "gulp": "npm run clean && gulp",
-    "pack": "npm run gulp && npm run pack:win && npm run pack:darwin",
-    "pack:win": "electron-packager ./release/app electron-updater-sample --platform=win32 --arch=x64 --version=0.27.2 --out=./release/win32 --icon=assets/win/evolve.ico",
-    "pack:darwin": "electron-packager ./release/app electron-updater-sample --platform=darwin --arch=x64 --version=0.27.2 --out=./release/darwin --icon=assets/win/evolve.ico",
-    "build": "npm run pack && npm run build:win && npm run build:darwin",
-    "build:win": "electron-builder ./release/win32/electron-updater-sample-win32 --platform=win32 --config=config.json --out=./release/win32",
-    "build:darwin": "electron-builder ./release/darwin/electron-updater-sample.app --platform=darwin --config=config.json --out=./release/darwin",
-    "release": "npm run build && npm run release:win && npm run release:darwin",
-    "release:win": "mv './release/win32/electron-updater-sample Setup.exe' './release/win32/Setup-x64.exe'",
-    "release:darwin": "mv ./release/darwin/electron-updater-sample.dmg ./release/darwin/electron-updater-sample-x64.dmg"
+    "pack": "build --target dir",
+    "dist": "build"
   },
   "repository": {
     "type": "git",
@@ -25,20 +16,25 @@
   "keywords": [
     "Electron"
   ],
-  "author": "Hati Software",
+  "author": {
+      "name" : "Hati Software",
+      "email": "contact@hatisoft.net",
+      "url" : "http://hatisoft.net/"
+    },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Hatisoft/koteky/issues"
   },
   "homepage": "https://github.com/Hatisoft/koteky#readme",
   "devDependencies": {
+    "blanket": "^1.2.1",
+    "chai": "^3.4.1",
+    "electron-builder": "^3.25.0",
     "electron-packager": "^7.0.2",
     "electron-prebuilt": "^1.2.0",
     "gulp": "^3.8.11",
-    "proxyquire": "^1.4.0",
-    "blanket": "^1.2.1",
-    "chai": "^3.4.1",
     "mocha": "^2.3.4",
+    "proxyquire": "^1.4.0",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
   },
@@ -63,5 +59,9 @@
   },
   "plugins": {
     "koteky-twitter": "0.4.9"
+  },
+  "build": {
+      "app-bundle-id": "Hatisoft",
+      "app-category-type": "social.network.manager"
   }
 }
