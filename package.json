@@ -6,7 +6,6 @@
   "scripts": {
     "start": "electron .",
     "test": "mocha test",
-    "pack": "build --target dir",
     "dist": "build"
   },
   "repository": {
@@ -61,7 +60,7 @@
     "koteky-twitter": "0.4.9"
   },
   "build": {
-      "app-bundle-id": "Hatisoft",
-      "app-category-type": "social.network.manager"
+      "asar": false,
+      "compression": "maximum"
   }
 }
