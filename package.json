@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "dev": "electron . --dev",
     "test": "mocha test",
     "dist": "build --publish=onTag"
   },
@@ -16,10 +17,10 @@
     "Electron"
   ],
   "author": {
-      "name" : "Hati Software",
-      "email": "contact@hatisoft.net",
-      "url" : "http://hatisoft.net/"
-    },
+    "name": "Hati Software",
+    "email": "contact@hatisoft.net",
+    "url": "http://hatisoft.net/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Hatisoft/koteky/issues"
@@ -31,6 +32,7 @@
     "electron-builder": "^3.25.0",
     "electron-packager": "^7.0.2",
     "electron-prebuilt": "^1.2.0",
+    "electron-reload": "^1.0.0",
     "gulp": "^3.8.11",
     "mocha": "^2.3.4",
     "proxyquire": "^1.4.0",
@@ -60,10 +62,10 @@
     "koteky-twitter": "0.4.9"
   },
   "build": {
-      "asar": false,
-      "compression": "maximum",
-      "osx": {
-          "target": "dmg"
-      }
+    "asar": false,
+    "compression": "maximum",
+    "osx": {
+      "target": "dmg"
+    }
   }
 }

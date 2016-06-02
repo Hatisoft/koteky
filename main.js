@@ -11,7 +11,10 @@ const open = require("open");
 
 var isDevMode = process.argv.includes('--dev');
 
-var options = {dir: __dirname, index: 'file://' + __dirname + '/app.html', 'preload-window': true};
+if(isDevMode)
+    require('electron-reload')(__dirname);
+
+var options = {dir: __dirname, index: 'file://' + __dirname + '/app.html', 'preload-window': true, 'always-on-top': true};
 var settings = new ElectronSettings({configDirPath: vars.AppPath()});
 var windowsSettings = settings.get('window');
 if(windowsSettings)
