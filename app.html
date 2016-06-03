@@ -23,7 +23,7 @@
                             <button class="btn btn-default pull-right" v-on:click="send">Send</button>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" v-infinite-scroll="getMorePosts()" infinite-scroll-disabled="busy" infinite-scroll-immediate-check=false infinite-scroll-distance="10">
                     <div class="post-stream">
                         <template v-for="post in model.posts | orderBy 'date' -1">
                             <post :data="post" />
