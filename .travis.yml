@@ -11,8 +11,10 @@ matrix:
 install:
 - nvm install 6
 - npm install npm -g
-- npm install
+- if [[ "$TRAVIS_TAG" ]]; then npm install --production ; fi
+- if [[ "$TRAVIS_BRANCH" ]]; then npm install ; fi
 - npm prune
 
 script:
-- npm run dist
+- if [[ "$TRAVIS_TAG" ]]; then npm run dist --production ; fi
+- if [[ "$TRAVIS_BRANCH" ]]; then npm test ; fi

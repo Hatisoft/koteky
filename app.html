@@ -17,18 +17,30 @@
             <div class="container">
                 <div class="row">
                     <div class="editor" data-spy="affix">
-                            <div class="form-group">
+                        <div class="container">
+                            <div class="row">
                                 <textarea class="form-control" id="contentText" v-model="comment" rows="3"></textarea>
                             </div>
-                            <button class="btn btn-default pull-right" v-on:click="send">Send</button>
+                            <div class="row">
+                                <div class="post-button">
+                                    <button class="btn btn-default pull-right" v-on:click="send">Send</button>
+                                </div>
+                                <div class="plugins-list">
+                                    <template v-for="plugin in model.pluginsManager.plugins">
+                                        <label class="checkbox-inline">
+                                            <input class="available-network" type="checkbox" v-model="plugin.post_enalble">
+                                            {{ plugin.name }}
+                                        </label>
+                                    </template>
+                                </div>
+
+                            </div>
                     </div>
                 </div>
-                <div class="row" v-infinite-scroll="getMorePosts()" infinite-scroll-disabled="busy" infinite-scroll-immediate-check=false infinite-scroll-distance="10">
-                    <div class="post-stream">
-                        <template v-for="post in model.posts | orderBy 'date' -1">
-                            <post :data="post" />
-                        </template>
-                    </div>
+                <div class="row post-stream" v-infinite-scroll="getMorePosts()" infinite-scroll-disabled="busy" infinite-scroll-immediate-check=false infinite-scroll-distance="10">
+                    <template v-for="post in model.posts | orderBy 'date' -1">
+                        <post :data="post" />
+                    </template>
                 </div>
         </div>
         <script type="text/javascript">

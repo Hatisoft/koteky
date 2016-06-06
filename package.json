@@ -60,7 +60,7 @@
     "vue-moment": "^1.0.7"
   },
   "plugins": {
-    "koteky-twitter": "0.5.1"
+    "koteky-twitter": "0.5.4"
   },
   "build": {
     "asar": false,
