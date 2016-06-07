@@ -14,9 +14,6 @@
   </head>
   <body>
         <div id="app">
-            <div v-if="model.posts.length" class="loading">
-                <img src="resources/dots64.gif" />
-            </div>
             <div class="container" v-else>
                 <div class="row">
                     <div class="editor" data-spy="affix">
@@ -36,16 +33,21 @@
                                         </label>
                                     </template>
                                 </div>
+
                             </div>
-                        </div>
                     </div>
                 </div>
-                <div class="row post-stream" v-infinite-scroll="getMorePosts()" infinite-scroll-disabled="busy" infinite-scroll-immediate-check=false infinite-scroll-distance="10">
-                    <template v-for="post in model.posts | orderBy 'date' -1">
-                        <post :data="post" />
-                    </template>
+
+                <div v-if="model.posts.length == 0" class="container loading">
+                    <img src="resources/dots64.gif" />
                 </div>
-            </div>
+                <div v-else>
+                    <div class="row post-stream" v-infinite-scroll="getMorePosts()" infinite-scroll-disabled="busy" infinite-scroll-immediate-check=false infinite-scroll-distance="10">
+                        <template v-for="post in model.posts | orderBy 'date' -1">
+                            <post :data="post" />
+                        </template>
+                    </div>
+                </div>
         </div>
         <script type="text/javascript">
             const intializer = require('./lib/main/app-initializer');
@@ -60,6 +62,7 @@
 
             ga('create', 'UA-64624825-2', 'auto');
             ga('send', 'pageview');
+
         </script>
     </body>
 </html>
