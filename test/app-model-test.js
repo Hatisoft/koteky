@@ -47,11 +47,22 @@ var hasAccessCalled = function(){
 
 var postCalled = function(){
     var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
-    var PLuginSpy = sinon.spy(function() { return sinon.createStubInstance(provider); });
-    var plugin = new PLuginSpy();
+    var plugin = new provider();
+    plugin.post = sinon.spy(plugin, "post");
+    plugin.post_enalble = true;
     pluginsManager.plugins = [plugin];
     model.post('text');
     expect(plugin.post).to.have.been.calledOnce;
+};
+
+var postNotCalled = function(){
+    var model = new appModel(posts, settings, pluginsManager, whenPluginNoAccess);
+    var plugin = new provider();
+    plugin.post = sinon.spy(plugin, "post");
+    plugin.post_enalble = false;
+    pluginsManager.plugins = [plugin];
+    model.post('text');
+    expect(plugin.post).to.have.been.callCount(0);
 };
 
 var resetCalled = function(){
@@ -91,7 +102,8 @@ describe('App Model Initialization', function(){
     it ('has pluginsManager initialize', testPluginsManagerInit);
     it ('has _whenPluginNoAccess initialize', testWhenPluginNoAccessManagerInit);
     it ('hasAccess called if provider', hasAccessCalled);
-    it ('post to plugins', postCalled);
+    it ('post to plugins enabled', postCalled);
+    it ('post to plugins disabled', postNotCalled);
     it ('model reset', resetCalled);
     it ('initialize a plugins', initializePluginContentCalled);
     //it ('hasAccess not called if not provider', hasAccessNotCalled);
