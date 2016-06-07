@@ -23,12 +23,12 @@
                             </div>
                             <div class="row editor-actions-container">
                                 <div class="post-button">
-                                    <button class="btn btn-default pull-right" v-on:click="send">Send</button>
+                                    <button class="btn btn-default pull-right" v-on:click="send" v-bind:disabled="enable_post_button">Send</button>
                                 </div>
                                 <div class="plugins-list">
                                     <template v-for="plugin in model.pluginsManager.plugins">
                                         <label class="checkbox-inline">
-                                            <input class="available-network" type="checkbox" v-model="plugin.post_enalble">
+                                            <input class="available-network" type="checkbox"  v-model="plugin.post_enalble">
                                             {{ plugin.name }}
                                         </label>
                                     </template>
