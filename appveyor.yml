@@ -1,9 +1,7 @@
 -
     version: 0.4.{build}
     branches:
-        except:
-            - /*/
-    skip_tags: false
+        - /\d+\.\d+\.\d+/
     platform:
       - x64
     init:
