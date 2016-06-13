@@ -1,5 +1,7 @@
 # ![drawing](https://cloud.githubusercontent.com/assets/3071208/14738483/22967ed8-0882-11e6-874d-4c19eb244373.png)
 
+[![Join the chat at https://gitter.im/Hatisoft/koteky](https://badges.gitter.im/Hatisoft/koteky.svg)](https://gitter.im/Hatisoft/koteky?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/Hatisoft/koteky.svg?branch=master)](https://travis-ci.org/Hatisoft/koteky)
 [![Build status](https://ci.appveyor.com/api/projects/status/np9fywosgs2ob33i?svg=true)](https://ci.appveyor.com/project/kanekotic/koteky)
 ![Build status](https://img.shields.io/npm/v/koteky.svg)
