@@ -1,7 +1,7 @@
 -
     version: 0.4.{build}
-    skip_tags: true
-    skip_non_tags: false
+    skip_tags: false
+    skip_non_tags: true
     platform:
       - x64
     init:
@@ -17,8 +17,8 @@
     test: off
 -
     version: 0.4.{build}
-    skip_tags: false
-    skip_non_tags: true
+    skip_tags: true
+    skip_non_tags: false
     platform:
       - x64
     init:
