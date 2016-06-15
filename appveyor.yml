@@ -1,34 +1,14 @@
--
-    version: 0.4.{build}
-    skip_tags: false
-    skip_non_tags: true
-    platform:
-      - x64
-    init:
-      - git config --global core.autocrlf input
-    install:
-      - ps: Install-Product node 6 x64
-      - git reset --hard HEAD
-      - npm install npm -g
-      - npm install --production
-      - npm prune
-    build_script:
-      - npm run dist --production
-    test: off
--
-    version: 0.4.{build}
-    skip_tags: true
-    skip_non_tags: false
-    platform:
-      - x64
-    init:
-      - git config --global core.autocrlf input
-    install:
-      - ps: Install-Product node 6 x64
-      - git reset --hard HEAD
-      - npm install npm -g
-      - npm install
-      - npm prune
-    build_script:
-      - npm test
-    test: off
+version: 0.4.{build}
+platform:
+  - x64
+init:
+  - git config --global core.autocrlf input
+install:
+  - ps: Install-Product node 6 x64
+  - git reset --hard HEAD
+  - npm install npm -g
+  - npm install --production
+  - npm prune
+build_script:
+  - npm run dist --production
+test: off
