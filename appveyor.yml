@@ -7,8 +7,8 @@ install:
   - ps: Install-Product node 6 x64
   - git reset --hard HEAD
   - npm install npm -g
-  - npm install --production
+  - npm install
   - npm prune
 build_script:
-  - npm run dist --production
+  - npm run dist
 test: off
